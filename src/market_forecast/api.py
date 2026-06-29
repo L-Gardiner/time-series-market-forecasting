@@ -6,7 +6,8 @@ The fitted model is loaded once at startup; requests never refit.
 
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException, RedirectResponse
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 
 from market_forecast import __version__
 from market_forecast.predict import (
