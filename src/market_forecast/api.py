@@ -6,7 +6,7 @@ The fitted model is loaded once at startup; requests never refit.
 
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, RedirectResponse
 
 from market_forecast import __version__
 from market_forecast.predict import (
@@ -21,6 +21,11 @@ app = FastAPI(
     version=__version__,
     description=f"Time-series price forecasting. {DISCLAIMER}",
 )
+
+
+@app.get("/")
+def root() -> RedirectResponse:
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health")
